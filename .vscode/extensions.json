@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"EditorConfig.EditorConfig",
+		"Orta.vscode-jest",
+		"streetsidesoftware.code-spell-checker",
+		"esbenp.prettier-vscode"
+	]
+}

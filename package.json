@@ -1,0 +1,83 @@
+{
+	"name": "mytasystem-logging-api",
+	"version": "1.0.0",
+	"description": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jasonpederson/mytasystem-logging-api.git"
+	},
+	"license": "ISC",
+	"author": {
+		"name": "Derek Mayer"
+	},
+	"contributors": [],
+	"main": "./dist/src/index.js",
+	"scripts": {
+		"build": "rimraf dist/ && tsc",
+		"build:production": "rimraf dist/ && ncc build src/index.ts --out dist --source-map --no-cache && rimraf dist/src/ dist/test dist/jest.config.d.ts",
+		"burnthemall": "rimraf node_modules/ package-lock.json dist/ .eslintcache logs/ coverage/ && npm cache verify",
+		"check-for-package-updates": "npm-check -u",
+		"ci": "npm run sort-package-json-check && npm run format-check && npm run lint-no-cache-no-fix && npm run markdownlint",
+		"dependency-check": "depcheck",
+		"format": "prettier --cache --write \"**/*.+(js|ts|json)\"",
+		"format-check": "prettier --check \"**/*.+(js|ts|json)\"",
+		"lint": "eslint . --cache --fix --ext .ts",
+		"lint-no-cache-no-fix": "eslint . --ext .ts",
+		"markdownlint": "markdownlint **/*.md",
+		"prepare": "husky install",
+		"sort-package-json": "sort-package-json -q",
+		"sort-package-json-check": "sort-package-json --check",
+		"start": "ts-node ./src/index.ts",
+		"test": "jest",
+		"test:integration": "jest test/integration",
+		"test:integration:watch": "jest --watch test/integration",
+		"test:unit": "jest test/unit/src",
+		"test:unit:ci": "jest test/unit/src --config ./jest.config.ts --ci --reporters=default --reporters=jest-junit --watchAll=false",
+		"test:unit:watch": "jest --watch test/unit/src"
+	},
+	"dependencies": {
+		"@abraham/reflection": "0.12.0",
+		"@itsmepetey/mytasystem-logger": "1.0.0",
+		"body-parser": "1.20.2",
+		"dotenv": "16.4.5",
+		"express": "4.18.3",
+		"http-status-codes": "2.3.0",
+		"inversify": "6.0.2",
+		"inversify-express-utils": "6.4.6",
+		"response-time": "2.3.2",
+		"zod": "3.22.4"
+	},
+	"devDependencies": {
+		"@types/body-parser": "1.19.5",
+		"@types/express": "4.17.21",
+		"@types/http-status-codes": "1.2.0",
+		"@types/jest": "29.5.12",
+		"@types/node": "20.11.25",
+		"@types/response-time": "2.3.8",
+		"@typescript-eslint/eslint-plugin": "7.1.1",
+		"@typescript-eslint/parser": "7.1.1",
+		"@vercel/ncc": "0.38.1",
+		"cspell": "8.6.0",
+		"depcheck": "1.4.7",
+		"eslint": "8.57.0",
+		"eslint-config-googilyboogily-typescript": "1.0.2",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-import-resolver-typescript": "3.6.1",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-prettier": "5.1.3",
+		"husky": "9.0.11",
+		"jest": "29.7.0",
+		"jest-junit": "16.0.0",
+		"markdownlint-cli": "0.39.0",
+		"prettier": "3.2.5",
+		"rimraf": "5.0.5",
+		"sort-package-json": "2.8.0",
+		"ts-jest": "29.1.2",
+		"ts-node": "10.9.2",
+		"typescript": "5.4.2"
+	},
+	"engines": {
+		"node": "18",
+		"npm": ">=9"
+	}
+}

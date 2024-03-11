@@ -1,0 +1,26 @@
+{
+	"configurations": [
+		{
+			"name": "Launch Program",
+			"outFiles": ["${workspaceFolder}/dist/**/*.js"],
+			"preLaunchTask": "tsc: build - tsconfig.json",
+			"program": "${workspaceFolder}/src/index.ts",
+			"request": "launch",
+			"type": "node"
+		},
+		{
+			"args": ["--i", "--config", "jest.config.ts"],
+			"cwd": "${workspaceRoot}",
+			"name": "Debug Unit Tests",
+			"request": "launch",
+			"runtimeArgs": [
+				"${workspaceRoot}/node_modules/jest/bin/jest.js",
+				"${workspaceRoot}/test/unit/src",
+				"--testTimeout",
+				"0"
+			],
+			"type": "node"
+		}
+	],
+	"version": "0.2.0"
+}
