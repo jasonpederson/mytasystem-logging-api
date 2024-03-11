@@ -1,0 +1,39 @@
+name: Production
+on:
+  push:
+    branches:
+      - master
+
+env:
+  CI: false
+  ENVIRONMENT: production
+  BRANCH_NAME: ${{ github.ref_name }}
+  TEAM_NAME: shared
+  PACKAGE_NAME:
+  PACKAGE_VERSION:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: Read package.json
+        uses: rexdefuror/read-package-json@v1.0.5
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: production-${{ env.PACKAGE_NAME }}-v${{ env.PACKAGE_VERSION }}
+          release_name: v${{ env.PACKAGE_VERSION }}
+          draft: false
+          prerelease: false
